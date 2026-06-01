@@ -1,0 +1,35 @@
+{
+  "name": "bloodgpt-widgets-example",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Example Next.js app showcasing the @bloodgpt/widgets embeddable React widgets",
+  "type": "module",
+  "scripts": {
+    "sync-widgets": "node scripts/sync-widgets.mjs",
+    "dev": "next dev -p 3100",
+    "build": "next build",
+    "start": "next start -p 3100",
+    "lint": "next lint",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@bloodgpt/widgets": "file:./vendor/@bloodgpt/widgets",
+    "@tanstack/react-query": "^5.100.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.475.0",
+    "next": "15.5.18",
+    "next-intl": "^4.8.3",
+    "process": "^0.11.10",
+    "react": "19.1.7",
+    "react-dom": "19.1.7",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/node": "^20.11.17",
+    "@types/react": "19.2.4",
+    "@types/react-dom": "19.2.3",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5"
+  }
+}
