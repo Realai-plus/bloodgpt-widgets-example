@@ -6,12 +6,13 @@
  * tokens and the hand-written typography utilities the components rely on.
  *
  * So instead of importing it, we let THIS app's Tailwind build generate every
- * class the widgets use by pointing `@source` at the vendored bundle (all
- * classNames are string literals inside it), and we re-declare the BloodGPT
- * design tokens + typography utilities below. The result is a fully styled,
- * brand-accurate render.
+ * class the widgets use by pointing `@source` at the installed package bundle
+ * (all classNames are string literals inside it), and we re-declare the
+ * BloodGPT design tokens + typography utilities below. The result is a fully
+ * styled, brand-accurate render. Tailwind ignores node_modules for automatic
+ * detection, but honors an explicit `@source` path into it.
  */
-@source "../../vendor/@bloodgpt/widgets/dist/index.js";
+@source "../../node_modules/@bloodgpt/widgets/dist/index.js";
 
 @theme {
   /* --- BloodGPT brand palette (from @repo/tokens primitives) ------------- */

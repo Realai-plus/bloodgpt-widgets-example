@@ -1,9 +1,9 @@
 # BloodGPT Widgets — Example App
 
 A standalone **Next.js 15 (App Router)** app that showcases
-[`@bloodgpt/widgets`](../bloodgpt-for-business/packages/widgets) — the drop-in
-React components that render BloodGPT blood-test reports inside your own
-product.
+[`@bloodgpt/widgets`](https://www.npmjs.com/package/@bloodgpt/widgets)
+(`0.1.0-alpha.0`, installed from npm) — the drop-in React components that render
+BloodGPT blood-test reports inside your own product.
 
 It ships with a **mock backend**, so it runs end-to-end with **no real
 credentials**. The widgets, their props, and the API data contracts are the
@@ -88,25 +88,34 @@ longer need the mock.
 
 ## Notes on consuming the package
 
-This example consumes a **vendored copy** of the built widgets package
-(`vendor/@bloodgpt/widgets`, referenced via a `file:` dependency) rather than
-the monorepo source, so it installs cleanly outside the workspace. Refresh it
-after rebuilding the widgets with:
+This example installs the published package straight from npm:
 
-```bash
-pnpm sync-widgets   # copies the latest dist from ../bloodgpt-for-business
+```jsonc
+// package.json
+"@bloodgpt/widgets": "0.1.0-alpha.0"
 ```
 
-Two integration details worth knowing (both handled for you here):
+Three alpha rough edges are worked around here on the consumer side (each is a
+known gap in `@bloodgpt/widgets@0.1.0-alpha.0` worth a ticket upstream):
 
-1. **Styling** — the widgets' prebuilt `styles.css` is utilities-only and, in
-   this alpha, incomplete. This app instead generates a complete, brand-accurate
-   stylesheet via its own Tailwind build by scanning the vendored bundle and
-   re-declaring the BloodGPT design tokens. See `src/app/globals.css`.
-2. **`fetch` binding** — the widgets' HTTP client needs `fetch` bound to the
-   global; `src/components/provider.tsx` passes a small wrapper via the
-   provider's `fetch` prop. It also supplies the `testDetail` / `common`
-   message namespaces the components use (the package bundles only `analysis`).
+1. **Styling** — the package's prebuilt `styles.css` is utilities-only and
+   incomplete (it omits the brand design tokens and the hand-written typography
+   utilities). This app instead generates a complete, brand-accurate stylesheet
+   via its own Tailwind build: `src/app/globals.css` points `@source` at the
+   installed bundle (`node_modules/@bloodgpt/widgets/dist/index.js`) so every
+   class the widgets use is emitted, and re-declares the BloodGPT design tokens.
+2. **`fetch` binding** — the widgets' HTTP client calls `fetch` unbound, which
+   throws "Illegal invocation" in the browser; `src/components/provider.tsx`
+   passes a bound wrapper via the provider's `fetch` prop.
+3. **Locale namespaces** — the package bundles only the `analysis` next-intl
+   namespace, but the components also read `testDetail` / `common`; we supply
+   those via the provider's `messages` prop (`src/lib/widget-messages.ts`).
+
+> **Heads-up for live data:** the backend's trend endpoint emits ISO-timestamp
+> keys (`2025-03-10T00:00:00.000Z`) while the chart only plots date-only keys
+> (`2025-03-10`), so trend lines render blank against a real backend until that
+> mismatch is fixed (date-only keys in `b2b-api`'s `buildTrends`, or
+> key-normalization in the chart). The mock backend here uses date-only keys.
 
 ## Disclaimer
 

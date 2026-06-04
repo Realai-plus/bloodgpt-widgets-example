@@ -5,7 +5,6 @@
   "description": "Example Next.js app showcasing the @bloodgpt/widgets embeddable React widgets",
   "type": "module",
   "scripts": {
-    "sync-widgets": "node scripts/sync-widgets.mjs",
     "dev": "next dev -p 3100",
     "build": "next build",
     "start": "next start -p 3100",
@@ -13,7 +12,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@bloodgpt/widgets": "file:./vendor/@bloodgpt/widgets",
+    "@bloodgpt/widgets": "0.1.0-alpha.0",
     "@tanstack/react-query": "^5.100.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.475.0",
