@@ -19,10 +19,13 @@ next-env.d.ts
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 .pnpm-debug.log*
 
-# env
-.env*.local
+# env — ignore all real env files; the committed template is .env.example
+.env
+.env.*
+!.env.example
 
 # typescript
 *.tsbuildinfo
