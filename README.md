@@ -9,6 +9,9 @@ It ships with a **mock backend**, so it runs end-to-end with **no real
 credentials**. The widgets, their props, and the API data contracts are the
 real thing — point the app at a live backend and it behaves identically.
 
+📚 **Full documentation:** [docs.bloodgpt.com](https://docs.bloodgpt.com) ·
+📦 **Package:** [`@bloodgpt/widgets` on npm](https://www.npmjs.com/package/@bloodgpt/widgets)
+
 ![Full report view](./docs/screenshot.png)
 
 ## What it demonstrates
@@ -85,6 +88,9 @@ Set `NEXT_PUBLIC_BLOODGPT_API_URL` to a real BloodGPT deployment and replace the
 server-side mint in `src/app/page.tsx` with a real call using your
 `BLOODGPT_API_KEY`. Delete `src/app/api/v1/**` and `src/lib/mock/**` once you no
 longer need the mock.
+
+For API keys, the endpoint reference, and integration guides, see the docs at
+**[docs.bloodgpt.com](https://docs.bloodgpt.com)**.
 
 ## Notes on consuming the package
 

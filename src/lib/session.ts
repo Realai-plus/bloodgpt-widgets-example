@@ -5,6 +5,7 @@
  * key for a short-lived, patient-scoped session token via
  *   POST https://backend.bloodgpt.tech/api/v1/widget-sessions
  * and hands the token to the browser. This file fakes that exchange.
+ * Docs: https://docs.bloodgpt.com
  *
  * The token here is just a signed-ish, base64url-encoded payload — it is NOT
  * cryptographically secure and exists only so the mock widget endpoints can
